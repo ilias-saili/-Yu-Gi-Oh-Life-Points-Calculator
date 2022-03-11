@@ -112,6 +112,7 @@ h1.playername2 {
     bottom: 217px;
 }
 h1.p2_LP {
+    font-family: 'squealer', sans-serif;
     font-size: 70px;
     border: 5px solid black;
     width: fit-content;
