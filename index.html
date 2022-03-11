@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yu-Gi-Oh! - Life Points Calculator</title>
+    <meta charset="utf-8">
+    <script>
+        //LP du joueur 1.
+        var p1_current_LP=8000;
+        // LP du joueur 2.
+        var p2_current_LP=8000;
+        // Fixe les LP des deux joueurs à 8000.
+        function reset() {
+        p1_current_LP=8000;
+        p2_current_LP=8000;
+        document.getElementById("p1_LP").innerHTML=p1_current_LP;
+        document.getElementById("p2_LP").innerHTML=p2_current_LP;
+        }
+        // Augmente les LP du joueur 1 de amount.
+        function p1_gain(amount){
+            if (amount=="1000"){p1_current_LP+=1000;}
+            else if (amount=="500"){p1_current_LP+=500;}
+            else if (amount=="100"){p1_current_LP+=100;}
+            else if (amount=="50"){p1_current_LP+=50;}
+            else if (amount=="-1000"){p1_current_LP-=1000;}
+            else if (amount=="-500"){p1_current_LP-=500;}
+            else if (amount=="-100"){p1_current_LP-=100;}
+            else if (amount=="-50"){p1_current_LP-=50;}
+            document.getElementById("p1_LP").innerHTML=p1_current_LP;
+        }
+        // Augmente les LP du joueur 2 de amount.
+        function p2_gain(amount){
+            if (amount=="1000"){p2_current_LP+=1000;}
+            else if (amount=="500"){p2_current_LP+=500;}
+            else if (amount=="100"){p2_current_LP+=100;}
+            else if (amount=="50"){p2_current_LP+=50;}
+            else if (amount=="-1000"){p2_current_LP-=1000;}
+            else if (amount=="-500"){p2_current_LP-=500;}
+            else if (amount=="-100"){p2_current_LP-=100;}
+            else if (amount=="-50"){p2_current_LP-=50;}
+            document.getElementById("p2_LP").innerHTML=p2_current_LP;
+        }
+        // Divise par deux les LP du joueur 1.
+        function p1_half(){
+            p1_current_LP=p1_current_LP/2;
+            document.getElementById("p1_LP").innerHTML=p1_current_LP;
+        }
+        // Divise par deux les LP du joueur 2.
+        function p2_half(){
+            p2_current_LP=p2_current_LP/2;
+            document.getElementById("p2_LP").innerHTML=p2_current_LP;
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+</head>
+<body>
+    <h1 class="titre"><strong>Yu-Gi-Oh! - Life Points Calculator</strong></h1><hr>
+<!-- PLAYER 1 -->
+    <p>
+        <img class="p1pic" src="img/Jaden_485px.jpg" width="100"><br>
+        <h1 class="playername1">Player 1</h1>
+    </p>
+    <p>
+        <h1 class="p1_LP" id="p1_LP" value="8000"> 8000 </h1>
+    </p>
+    <p class="P1buttons">
+        <img class="P1logo_moins" src="img/logo_moins.png" width="50">
+        <img class="P1logo_plus" src="img/logo_plus.png" width="50">
+        <br><br>
+        <button class="P1minus" id="P1-1000" onclick="p1_gain(-1000)"><h1 class="damages">-1000</h1></button>
+        <button class="P1minus" id="P1-500" onclick="p1_gain(-500)"><h1 class="damages">-500</h1></button>
+        <button class="P1plus" id="P1+1000" onclick="p1_gain(1000)"><h1 class="damages">+1000</h1></button>
+        <button class="P1plus" id="P1+500" onclick="p1_gain(500)"><h1 class="damages">+500</h1></button>
+        <br>
+        <button class="P1minus" id="P1-100" onclick="p1_gain(-100)"><h1 class="damages">-100</h1></button>
+        <button class="P1minus" id="P1-50" onclick="p1_gain(-50)"><h1 class="damages">-50</h1></button>
+        <button class="P1plus" id="P1+100" onclick="p1_gain(100)"><h1 class="damages">+100</h1></button>
+        <button class="P1plus" id="P1+50" onclick="p1_gain(50)"><h1 class="damages">+50</h1></button>
+        <br><br>
+        <button class="p1half" id="P1half" onclick="p1_half()" style="width: 70px;"><strong>Half</strong></button>
+    </p>
+
+<!-- RESET / TIMER / MUSIC -->
+    <div class="timer">
+        <hr>
+        <button class="reset" id="reset" onclick="reset()">Reset LP</button>
+        <button class="timer" id="timer" onclick="start_timer()" ><h1>Start Timer</h1></button>
+        <script>
+            // Temps initial : 2400s=40min
+            var temps=2400;
+            // 
+            const timerElement = document.getElementById("timer");
+            // Décrémente le timer toutes les secondes
+            function diminuerTemps() {
+            let minutes = parseInt(temps / 60, 10)
+            let secondes = parseInt(temps % 60, 10)
+            if (minutes < 10) {minutes = "0" + minutes;}
+            if (secondes < 10) {secondes = "0" + secondes;}
+            timerElement.innerText = minutes + ":" + secondes;
+            if (temps <= 0) {temps=0;}
+            else {temps--;}
+            }
+            // Démarre le timer.
+            function start_timer(){
+            setInterval(diminuerTemps, 1000);
+            }
+        </script>
+        
+        
+        <hr>
+    </div>
+
+<!-- PLAYER 2 -->
+    <p>
+        <img class="p2pic" src="img/Jesse_485px.jpg" width="100"><br>
+        <h1 class="playername2">Player 2</h1>
+    </p>
+    <p>
+        <h1 class="p2_LP" id="p2_LP"> 8000 </h1>
+    </p>
+    <p class="P2buttons">
+        <img class="P2logo_moins" src="img/logo_moins.png" width="50">
+        <img class="P2logo_plus" src="img/logo_plus.png" width="50">
+        <br><br>
+        <button class="P2minus" id="P2-1000" onclick="p2_gain(-1000)"><h1 class="damages">-1000</h1></button>
+        <button class="P2minus" id="P2-500" onclick="p2_gain(-500)"><h1 class="damages">-500</h1></button>
+        <button class="P2plus" id="P2+1000" onclick="p2_gain(1000)"><h1 class="damages">+1000</h1></button>
+        <button class="P2plus" id="P2+500" onclick="p2_gain(500)"><h1 class="damages">+500</h1></button>
+        <br>
+        <button class="P2minus" id="P2-100" onclick="p2_gain(-100)"><h1 class="damages">-100</h1></button>
+        <button class="P2minus" id="P2-50" onclick="p2_gain(-50)"><h1 class="damages">-50</h1></button>
+        <button class="P2plus" id="P2+100" onclick="p2_gain(100)"><h1 class="damages">+100</h1></button>
+        <button class="P2plus" id="P2+50" onclick="p2_gain(50)"><h1 class="damages">+50</h1></button>
+        <br><br>
+        <button class="p2half" id="P2half" onclick="p2_half()" style="width: 70px;"><strong>Half</strong></button>
+    </p>
+    <hr>
+<!-- MUSIC -->
+    <br>
+    <div>
+        <h2 class="mixtitle">Yu-Gi-Oh dueling songs - Mix 1 (1:00:15) :
+        <audio
+            class="mix"
+            controls
+            src="C:\LP_Calculator_website\musiques\mix1.mp3"
+            loop>
+            Your browser does not support the <code>audio</code> element.
+        </audio></h2>
+    </div>
+    <br>
+    <div>
+        <h2 class="mixtitle">Yu-Gi-Oh dueling songs - Mix 2 (24:06) :
+        <audio
+            class="mix"
+            controls
+            src="C:\LP_Calculator_website\musiques\mix2.mp3"
+            loop>
+            Your browser does not support the <code>audio</code> element.
+        </audio></h2>
+    </div>
+
+</body>
+</html>
